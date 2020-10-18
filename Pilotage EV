@@ -1,0 +1,20 @@
+  Etat_LS_H = digitalRead(LS1);
+  Etat_LS_B = digitalRead(LS2);
+
+  lcd.setCursor(0,0);
+  lcd.print(Etat_LS_H); 
+  lcd.setCursor(0,1);
+  lcd.print(Etat_LS_B);
+  
+
+  if ((Etat_LS_H == HIGH) && (Etat_LS_B == HIGH)) //position capteur haut - ON (table remplie)
+  {
+    digitalWrite(EV1, LOW); //EV fermée
+    digitalWrite(EV2, LOW); //EV fermée
+  }
+
+  if ((Etat_LS_H != HIGH) && (Etat_LS_B != HIGH)) //position capteur haut et capteur bas - OFF (table vidangée)
+  {
+    digitalWrite(EV1, HIGH); //EV ouverte
+    digitalWrite(EV2, HIGH); //EV ouverte
+  }
